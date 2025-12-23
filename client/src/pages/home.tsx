@@ -1,7 +1,35 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
+const sliderImages = [
+  { src: "/images/lobby.jpg", alt: "Lobby Design" },
+  { src: "/images/gym.jpg", alt: "Fitness Center" },
+  { src: "/images/patient-room.jpg", alt: "Patient Room" },
+  { src: "/images/hallway.jpg", alt: "Hallway Design" },
+  { src: "/images/dining.jpg", alt: "Dining Room" },
+  { src: "/images/lounge.jpg", alt: "Lounge Area" },
+];
+
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -29,8 +57,8 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=2992&auto=format&fit=crop"
-            alt="Elegant senior living space"
+            src="/images/lobby.jpg"
+            alt="IDBH Design - Senior Living Lobby"
             className="w-full h-full object-cover"
           />
           {/* Dark wash overlay for text readability */}
@@ -63,52 +91,37 @@ export default function Home() {
             Spaces That Inspire Care
           </motion.p>
 
-          {/* Main Headline */}
+          {/* Main Headline - Website Coming Soon */}
           <motion.h1 
             variants={itemVariants}
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8"
+            className="text-white text-4xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6"
             data-testid="text-headline"
           >
-            Designing Environments<br />
-            <span className="italic">for Healing.</span>
+            Website<br />
+            <span className="italic">Coming Soon.</span>
           </motion.h1>
 
-          {/* Subtext */}
+          {/* Subtext - Designing Environments for Healing */}
           <motion.p 
             variants={itemVariants}
             className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed"
             data-testid="text-description"
           >
-            IDBH Design specializes in healthcare interiors for assisted living communities, nursing homes, and senior care facilities. Our new website is coming soon.
+            Designing environments for healing. IDBH specializes in healthcare interiors for assisted living communities, nursing homes, and senior care facilities.
           </motion.p>
 
-          {/* Coming Soon Badge */}
+          {/* Decorative line */}
           <motion.div variants={itemVariants}>
-            <span 
-              className="inline-block text-white/90 text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-2"
-              data-testid="text-coming-soon"
-            >
-              Website Coming Soon
-            </span>
+            <div className="w-px h-16 bg-gradient-to-b from-white/50 to-transparent mx-auto" />
           </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-        >
-          <div className="w-px h-16 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
         </motion.div>
       </section>
 
-      {/* About Section */}
+      {/* About Section with Image Slider */}
       <section className="bg-white py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            {/* Image Column */}
+            {/* Image Slider Column */}
             <motion.div 
               className="relative"
               initial={{ opacity: 0, x: -30 }}
@@ -116,12 +129,53 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <img 
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2958&auto=format&fit=crop"
-                alt="Modern interior design"
-                className="w-full aspect-[4/5] object-cover"
-                data-testid="img-about"
-              />
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentSlide}
+                    src={sliderImages[currentSlide].src}
+                    alt={sliderImages[currentSlide].alt}
+                    className="w-full h-full object-cover absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    data-testid={`img-slider-${currentSlide}`}
+                  />
+                </AnimatePresence>
+                
+                {/* Slider Controls */}
+                <div className="absolute inset-0 flex items-center justify-between p-4">
+                  <button
+                    onClick={prevSlide}
+                    className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center transition-all hover:bg-white"
+                    data-testid="button-prev-slide"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-neutral-800" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center transition-all hover:bg-white"
+                    data-testid="button-next-slide"
+                  >
+                    <ChevronRight className="w-5 h-5 text-neutral-800" />
+                  </button>
+                </div>
+
+                {/* Slide Indicators */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {sliderImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentSlide ? "bg-white w-6" : "bg-white/50"
+                      }`}
+                      data-testid={`button-slide-indicator-${index}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </motion.div>
 
             {/* Text Column */}
@@ -144,7 +198,7 @@ export default function Home() {
                 className="text-muted-foreground leading-relaxed mb-8"
                 data-testid="text-about-description"
               >
-                Led by Debbie Beyman, IDBH Design brings decades of expertise to healthcare interiors. We understand that assisted living facilities, nursing homes, and senior care communities require thoughtful design that balances beauty with functionality, comfort with safety.
+                IDBH brings decades of expertise to the healthcare industry. We understand that assisted living facilities, nursing homes, and senior care communities require thoughtful design that balances beauty with functionality, comfort with safety.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Our portfolio-driven approach ensures every project is visually stunning while meeting the unique needs of healthcare environments.
