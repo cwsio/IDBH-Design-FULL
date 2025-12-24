@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import HomeMinimal from "@/pages/home-minimal";
+import Projects from "@/pages/projects";
+import Contact from "@/pages/contact";
 
 type SiteType = 'design' | 'minimal' | 'loading';
 
@@ -30,7 +32,6 @@ function getSiteTypeFromHostname(): SiteType {
     return 'design';
   }
   
-  // Default to design for development/other domains
   return 'design';
 }
 
@@ -48,6 +49,8 @@ function Router({ siteType }: { siteType: SiteType }) {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/projects" component={Projects} />
+      <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -57,14 +60,12 @@ function App() {
   const [siteType, setSiteType] = useState<SiteType>('loading');
 
   useEffect(() => {
-    // First check URL parameter (for testing)
     const urlSiteType = getSiteTypeFromUrl();
     if (urlSiteType) {
       setSiteType(urlSiteType);
       return;
     }
 
-    // Then use hostname-based detection
     const hostnameSiteType = getSiteTypeFromHostname();
     setSiteType(hostnameSiteType);
   }, []);

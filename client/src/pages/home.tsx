@@ -1,57 +1,64 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { Building2, Palette, Users, ClipboardCheck, ArrowRight } from "lucide-react";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
-const sliderImages = [
-  { src: "/images/lobby.jpg", alt: "Lobby Design" },
-  { src: "/images/gym.jpg", alt: "Fitness Center" },
-  { src: "/images/patient-room.jpg", alt: "Patient Room" },
-  { src: "/images/hallway.jpg", alt: "Hallway Design" },
-  { src: "/images/dining.jpg", alt: "Dining Room" },
-  { src: "/images/lounge.jpg", alt: "Lounge Area" },
+const featuredProjects = [
+  { id: 1, title: "Sunrise Senior Living", category: "Senior Living", image: "/images/lobby.jpg" },
+  { id: 2, title: "Wellness Center", category: "Healthcare", image: "/images/gym.jpg" },
+  { id: 3, title: "Patient Care Suite", category: "Healthcare", image: "/images/patient-room.jpg" },
+  { id: 4, title: "Memory Care Commons", category: "Senior Living", image: "/images/hallway.jpg" },
+  { id: 5, title: "Assisted Living Dining", category: "Senior Living", image: "/images/dining.jpg" },
+  { id: 6, title: "Rehabilitation Lounge", category: "Healthcare", image: "/images/lounge.jpg" },
 ];
 
+const valuePoints = [
+  {
+    icon: Building2,
+    title: "Healthcare-Focused Design",
+    description: "Specialized expertise in healthcare and senior living environments that prioritize both function and aesthetics."
+  },
+  {
+    icon: Palette,
+    title: "Clean, Modern Aesthetic",
+    description: "Contemporary design language that creates welcoming, comfortable spaces for residents and staff alike."
+  },
+  {
+    icon: Users,
+    title: "Experienced Team",
+    description: "Decades of combined experience in office, commercial, and healthcare interior design projects."
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Turn-Key Execution",
+    description: "Full-service project management from concept through completion, ensuring seamless delivery."
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      staggerChildren: 0.15,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: { type: "spring", stiffness: 40, damping: 20 }
+  }
+};
+
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { type: "spring", stiffness: 40, damping: 20 }
-    }
-  };
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section - Full viewport with background image */}
       <section className="relative min-h-screen flex items-center justify-center">
         {/* Background Image */}
@@ -62,7 +69,7 @@ export default function Home() {
             className="w-full h-full object-cover"
           />
           {/* Dark wash overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
 
         {/* Hero Content */}
@@ -77,170 +84,291 @@ export default function Home() {
             <img 
               src={logo} 
               alt="IDBH Design" 
-              className="h-16 md:h-20 mx-auto invert brightness-200"
+              className="h-16 md:h-24 mx-auto invert brightness-200"
               data-testid="img-logo"
             />
           </motion.div>
 
-          {/* Tagline */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-white/70 uppercase tracking-[0.3em] text-xs md:text-sm mb-6 font-light"
-            data-testid="text-tagline"
-          >
-            Spaces That Inspire Care
-          </motion.p>
-
           {/* Main Headline */}
           <motion.h1 
             variants={itemVariants}
-            className="text-white text-3xl md:text-5xl lg:text-6xl font-serif leading-tight mb-6"
+            className="text-white text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-6"
             data-testid="text-headline"
           >
-            Website Under Construction,<br />
-            <span className="italic">Premiering Soon.</span>
+            Designing Spaces<br />
+            <span className="italic">That Inspire Care</span>
           </motion.h1>
 
-          {/* Subtext - Designing Environments for Healing */}
+          {/* Sub-headline / Positioning Statement */}
           <motion.p 
             variants={itemVariants}
             className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed"
-            data-testid="text-description"
+            data-testid="text-subheadline"
           >
-            Designing environments for healing. IDBH specializes in healthcare interiors for assisted living communities, nursing homes, and senior care facilities.
+            IDBH Design specializes in healthcare interiors for assisted living communities, nursing homes, and senior care facilities. We create environments that nurture healing and comfort.
           </motion.p>
 
-          {/* Contact Info */}
-          <motion.div variants={itemVariants} className="mb-12">
-            <p className="text-white/90 text-sm md:text-base mb-2">
-              <a 
-                href="mailto:info@idbh.com" 
-                className="hover:text-white transition-colors"
-                data-testid="link-email"
+          {/* CTA Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/projects">
+              <Button 
+                size="lg" 
+                className="bg-white text-neutral-900 border border-white/20 backdrop-blur-sm"
+                data-testid="button-view-work"
               >
-                info@idbh.com
-              </a>
-            </p>
-            <p className="text-white/90 text-sm md:text-base">
-              <a 
-                href="tel:732-813-8500" 
-                className="hover:text-white transition-colors"
-                data-testid="link-phone"
+                View Our Work
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/40 text-white bg-white/10 backdrop-blur-sm"
+                data-testid="button-contact-hero"
               >
-                732-813-8500
-              </a>
-            </p>
+                Contact Us
+              </Button>
+            </Link>
           </motion.div>
 
-          {/* Decorative line */}
-          <motion.div variants={itemVariants}>
+          {/* Scroll indicator */}
+          <motion.div 
+            variants={itemVariants}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          >
             <div className="w-px h-16 bg-gradient-to-b from-white/50 to-transparent mx-auto" />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* About Section with Image Slider */}
-      <section className="bg-white py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            {/* Image Slider Column */}
-            <motion.div 
-              className="relative"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+      {/* About the Company Section */}
+      <section className="py-24 md:py-32 bg-background">
+        <div className="max-w-4xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-8"
+              data-testid="text-about-title"
             >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentSlide}
-                    src={sliderImages[currentSlide].src}
-                    alt={sliderImages[currentSlide].alt}
-                    className="w-full h-full object-cover absolute inset-0"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    data-testid={`img-slider-${currentSlide}`}
-                  />
-                </AnimatePresence>
-                
-                {/* Slider Controls */}
-                <div className="absolute inset-0 flex items-center justify-between p-4">
-                  <button
-                    onClick={prevSlide}
-                    className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center transition-all hover:bg-white"
-                    data-testid="button-prev-slide"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-neutral-800" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center transition-all hover:bg-white"
-                    data-testid="button-next-slide"
-                  >
-                    <ChevronRight className="w-5 h-5 text-neutral-800" />
-                  </button>
-                </div>
+              About IDBH Design
+            </h2>
+            <p 
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6"
+              data-testid="text-about-description"
+            >
+              For over two decades, IDBH Design has been at the forefront of healthcare interior design. We understand that assisted living facilities, nursing homes, and senior care communities require thoughtful design that balances beauty with functionality, comfort with safety.
+            </p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              Our team brings a wealth of experience in creating spaces that not only meet regulatory requirements but exceed expectations. We believe that great design has the power to improve quality of life, and we bring that philosophy to every project we undertake.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-                {/* Slide Indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                  {sliderImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentSlide ? "bg-white w-6" : "bg-white/50"
-                      }`}
-                      data-testid={`button-slide-indicator-${index}`}
+      {/* Featured Work Section */}
+      <section className="py-24 md:py-32 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-4"
+              data-testid="text-featured-title"
+            >
+              Featured Work
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Explore our portfolio of healthcare and senior living interior design projects.
+            </p>
+          </motion.div>
+
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Link href={`/projects#project-${project.id}`}>
+                  <div 
+                    className="group relative aspect-[4/3] overflow-hidden rounded-md cursor-pointer"
+                    data-testid={`card-project-${project.id}`}
+                  >
+                    <img 
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Text Column */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h2 
-                className="text-4xl md:text-5xl font-serif text-foreground mb-6"
-                data-testid="text-about-title"
-              >
-                Our Vision
-              </h2>
-              <p className="text-lg md:text-xl font-serif italic text-muted-foreground mb-8">
-                We don't just design spaces; we create environments that nurture.
-              </p>
-              <p 
-                className="text-muted-foreground leading-relaxed mb-8"
-                data-testid="text-about-description"
-              >
-                IDBH brings decades of expertise to the healthcare industry. We understand that assisted living facilities, nursing homes, and senior care communities require thoughtful design that balances beauty with functionality, comfort with safety.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Our portfolio-driven approach ensures every project is visually stunning while meeting the unique needs of healthcare environments.
-              </p>
-            </motion.div>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <span className="text-white/70 text-sm uppercase tracking-wider mb-1 block" data-testid={`text-project-category-${project.id}`}>
+                        {project.category}
+                      </span>
+                      <h3 className="text-white text-xl font-serif" data-testid={`text-project-title-${project.id}`}>
+                        {project.title}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
+
+          {/* View All Projects Button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-12"
+          >
+            <Link href="/projects">
+              <Button variant="outline" size="lg" data-testid="button-view-all-projects">
+                View All Projects
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Work With Us Section */}
+      <section className="py-24 md:py-32 bg-background">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-4"
+              data-testid="text-why-title"
+            >
+              Why Work With Us
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Partner with a team that understands the unique demands of healthcare environments.
+            </p>
+          </motion.div>
+
+          {/* Value Points Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {valuePoints.map((point, index) => (
+              <motion.div
+                key={point.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+                data-testid={`value-point-${index}`}
+              >
+                <div className="w-14 h-14 mx-auto mb-6 rounded-md bg-muted flex items-center justify-center">
+                  <point.icon className="w-7 h-7 text-foreground" />
+                </div>
+                <h3 className="text-lg font-medium text-foreground mb-3" data-testid={`text-value-title-${index}`}>
+                  {point.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-value-description-${index}`}>
+                  {point.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-24 md:py-32 bg-foreground">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-serif text-background mb-6"
+              data-testid="text-cta-title"
+            >
+              Ready to Transform Your Space?
+            </h2>
+            <p className="text-background/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+              Let's discuss how IDBH Design can help bring your vision to life. Whether you're planning a new facility or renovating an existing space, we're here to help.
+            </p>
+            <Link href="/contact">
+              <Button 
+                size="lg" 
+                className="bg-background text-foreground"
+                data-testid="button-get-in-touch"
+              >
+                Get in Touch
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-neutral-900 py-12">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <img 
-            src={logo} 
-            alt="IDBH Design" 
-            className="h-10 mx-auto mb-6 invert brightness-200 opacity-80"
-          />
-          <p className="text-neutral-400 text-sm" data-testid="text-copyright">
-            &copy; {new Date().getFullYear()} IDBH Design. All rights reserved.
-          </p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <img 
+              src={logo} 
+              alt="IDBH Design" 
+              className="h-10 invert brightness-200 opacity-80"
+              data-testid="img-footer-logo"
+            />
+            <div className="flex flex-wrap justify-center gap-6 text-neutral-400 text-sm">
+              <Link href="/" className="hover:text-white transition-colors" data-testid="link-footer-home">
+                Home
+              </Link>
+              <Link href="/projects" className="hover:text-white transition-colors" data-testid="link-footer-projects">
+                Projects
+              </Link>
+              <Link href="/contact" className="hover:text-white transition-colors" data-testid="link-footer-contact">
+                Contact
+              </Link>
+            </div>
+            <div className="text-neutral-400 text-sm">
+              <a 
+                href="mailto:info@idbh.com" 
+                className="hover:text-white transition-colors"
+                data-testid="link-footer-email"
+              >
+                info@idbh.com
+              </a>
+              <span className="mx-3">|</span>
+              <a 
+                href="tel:732-813-8500" 
+                className="hover:text-white transition-colors"
+                data-testid="link-footer-phone"
+              >
+                732-813-8500
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-neutral-800 mt-8 pt-8 text-center">
+            <p className="text-neutral-500 text-sm" data-testid="text-copyright">
+              &copy; {new Date().getFullYear()} IDBH Design. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

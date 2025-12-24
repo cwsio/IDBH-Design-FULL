@@ -4,13 +4,19 @@ import { z } from "zod";
 
 export const contacts = pgTable("contacts", {
   id: serial("id").primaryKey(),
+  name: text("name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertContactSchema = createInsertSchema(contacts).pick({
+  name: true,
   email: true,
+  phone: true,
+  company: true,
   message: true,
 });
 
