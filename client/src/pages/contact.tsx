@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useCreateContact } from "@/hooks/use-contact";
+import { Header } from "@/components/header";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 const contactSchema = z.object({
@@ -46,33 +47,10 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <Link href="/">
-            <img 
-              src={logo} 
-              alt="IDBH Design" 
-              className="h-10"
-              data-testid="img-header-logo"
-            />
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-nav-home">
-              Home
-            </Link>
-            <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-nav-projects">
-              Projects
-            </Link>
-            <Link href="/contact">
-              <Button size="sm" data-testid="button-nav-contact">Contact</Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Page Header */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="pt-24 md:pt-32 pb-16 md:pb-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

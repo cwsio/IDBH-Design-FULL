@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Building2, Palette, Users, ClipboardCheck, ArrowRight } from "lucide-react";
+import { Header } from "@/components/header";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 const featuredProjects = [
@@ -59,6 +60,8 @@ const itemVariants = {
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Header />
+      
       {/* Hero Section - Full viewport with background image */}
       <section className="relative min-h-screen flex items-center justify-center">
         {/* Background Image */}
