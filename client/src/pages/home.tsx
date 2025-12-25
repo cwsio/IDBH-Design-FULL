@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Building2, Palette, Users, ClipboardCheck, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/header";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
@@ -12,29 +12,6 @@ const featuredProjects = [
   { id: 4, title: "Memory Care Commons", category: "Senior Living", image: "/images/hallway.jpg" },
   { id: 5, title: "Assisted Living Dining", category: "Senior Living", image: "/images/dining.jpg" },
   { id: 6, title: "Rehabilitation Lounge", category: "Healthcare", image: "/images/lounge.jpg" },
-];
-
-const valuePoints = [
-  {
-    icon: Building2,
-    title: "Healthcare-Focused Design",
-    description: "Specialized expertise in healthcare and senior living environments that prioritize both function and aesthetics."
-  },
-  {
-    icon: Palette,
-    title: "Clean, Modern Aesthetic",
-    description: "Contemporary design language that creates welcoming, comfortable spaces for residents and staff alike."
-  },
-  {
-    icon: Users,
-    title: "Experienced Team",
-    description: "Decades of combined experience in office, commercial, and healthcare interior design projects."
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Turn-Key Execution",
-    description: "Full-service project management from concept through completion, ensuring seamless delivery."
-  },
 ];
 
 const containerVariants = {
@@ -249,51 +226,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Work With Us Section */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
+      {/* Experience Section */}
+      <section className="py-32 md:py-40 bg-background">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8 }}
           >
-            <h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-4"
-              data-testid="text-why-title"
+            <p 
+              className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto"
+              data-testid="text-experience-subtitle"
             >
-              Why Work With Us
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Partner with a team that understands the unique demands of healthcare environments.
+              Each space we design carries its own narrative—where purpose meets elegance, and every detail serves a greater vision.
             </p>
+            <h2 
+              className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground leading-tight"
+              data-testid="text-experience-title"
+            >
+              The journey begins<br />with intention
+            </h2>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-12"
+            >
+              <Link href="/contact">
+                <span 
+                  className="text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  data-testid="link-experience-contact"
+                >
+                  Contact Us
+                </span>
+              </Link>
+            </motion.div>
           </motion.div>
-
-          {/* Value Points Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valuePoints.map((point, index) => (
-              <motion.div
-                key={point.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-                data-testid={`value-point-${index}`}
-              >
-                <div className="w-14 h-14 mx-auto mb-6 rounded-md bg-muted flex items-center justify-center">
-                  <point.icon className="w-7 h-7 text-foreground" />
-                </div>
-                <h3 className="text-lg font-medium text-foreground mb-3" data-testid={`text-value-title-${index}`}>
-                  {point.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-value-description-${index}`}>
-                  {point.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
