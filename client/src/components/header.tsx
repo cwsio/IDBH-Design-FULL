@@ -26,15 +26,8 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm saturate-150 border-b border-white/50 dark:border-white/20 shadow-sm"
-          : "bg-white/15 backdrop-blur-[2px] saturate-150 border-b border-white/30"
+        isScrolled ? "glass-header-scrolled" : "glass-header"
       }`}
-      style={{
-        boxShadow: isScrolled 
-          ? '0 4px 16px rgba(31, 38, 135, 0.1), inset 0 2px 10px rgba(255, 255, 255, 0.2)' 
-          : 'inset 0 2px 10px rgba(255, 255, 255, 0.15)'
-      }}
       data-testid="header-nav"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">

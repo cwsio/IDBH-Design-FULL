@@ -291,4 +291,79 @@
     align-items: center;
     color: var(--lg-text);
   }
+
+  /* Dark variant for glass on dark backgrounds */
+  .liquid-glass-container.glass-dark {
+    --lg-bg-color: rgba(255, 255, 255, 0.08);
+    --lg-highlight: rgba(255, 255, 255, 0.25);
+    --lg-hover-glow: rgba(255, 255, 255, 0.15);
+  }
+
+  .liquid-glass-container.glass-dark .liquid-glass-specular {
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 0 3px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glass header nav */
+  .glass-header {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .glass-header-scrolled {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .dark .glass-header-scrolled {
+    background: rgba(23, 23, 23, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Glass card for project items */
+  .glass-project-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+  }
+
+  .glass-project-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glass footer */
+  .glass-footer {
+    background: rgba(23, 23, 23, 0.9);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Glass divider line */
+  .glass-divider {
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.3) 20%, 
+      rgba(255, 255, 255, 0.3) 80%, 
+      transparent);
+  }
 }

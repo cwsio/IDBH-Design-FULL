@@ -123,7 +123,7 @@ export default function Home() {
 
       // Experience section - dramatic reveal
       if (experienceRef.current) {
-        const glassCard = experienceRef.current.querySelector('.liquid-glass');
+        const glassCard = experienceRef.current.querySelector('.liquid-glass-container');
         if (glassCard) {
           gsap.fromTo(glassCard,
             { opacity: 0, scale: 0.9, y: 60 },
@@ -300,8 +300,11 @@ export default function Home() {
       </section>
 
       {/* Featured Work Section */}
-      <section className="py-28 md:py-36 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-muted/20 to-muted/30" />
+        
+        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
           <div ref={featuredRef} className="text-center mb-16">
             <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-muted-foreground mb-4">
               Portfolio
@@ -318,7 +321,7 @@ export default function Home() {
             {featuredProjects.map((project) => (
               <Link key={project.id} href={`/projects#project-${project.id}`}>
                 <div 
-                  className="project-card group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
+                  className="project-card glass-project-card group relative aspect-[4/3] overflow-hidden rounded-xl cursor-pointer"
                   data-testid={`card-project-${project.id}`}
                 >
                   <img 
@@ -429,58 +432,71 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer ref={footerRef} className="bg-neutral-900 py-16">
+      <footer ref={footerRef} className="relative glass-footer py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <img 
-              src={logo} 
-              alt="IDBH Design" 
-              className="h-10 brightness-0 invert opacity-70"
-              data-testid="img-footer-logo"
-            />
-            <nav className="flex flex-wrap justify-center gap-8">
-              <Link 
-                href="/" 
-                className="text-neutral-400 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                data-testid="link-footer-home"
-              >
-                Home
-              </Link>
-              <Link 
-                href="/projects" 
-                className="text-neutral-400 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                data-testid="link-footer-projects"
-              >
-                Projects
-              </Link>
-              <Link 
-                href="/contact" 
-                className="text-neutral-400 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                data-testid="link-footer-contact"
-              >
-                Contact
-              </Link>
-            </nav>
-            <div className="flex items-center gap-4 text-neutral-400 text-sm">
-              <a 
-                href="mailto:info@idbh.com" 
-                className="hover:text-white transition-colors duration-300"
-                data-testid="link-footer-email"
-              >
-                info@idbh.com
-              </a>
-              <span className="text-neutral-600">|</span>
-              <a 
-                href="tel:732-813-8500" 
-                className="hover:text-white transition-colors duration-300"
-                data-testid="link-footer-phone"
-              >
-                732-813-8500
-              </a>
+          {/* Glass container for footer content */}
+          <div className="liquid-glass-container glass-dark rounded-2xl p-8 md:p-12 mb-10">
+            <div className="liquid-glass-filter" />
+            <div className="liquid-glass-overlay" />
+            <div className="liquid-glass-specular" />
+            <div className="liquid-glass-content w-full">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 w-full">
+                <img 
+                  src={logo} 
+                  alt="IDBH Design" 
+                  className="h-12 brightness-0 invert opacity-80"
+                  data-testid="img-footer-logo"
+                />
+                <nav className="flex flex-wrap justify-center gap-8">
+                  <Link 
+                    href="/" 
+                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
+                    data-testid="link-footer-home"
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/projects" 
+                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
+                    data-testid="link-footer-projects"
+                  >
+                    Projects
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
+                    data-testid="link-footer-contact"
+                  >
+                    Contact
+                  </Link>
+                </nav>
+                <div className="flex items-center gap-4 text-white/50 text-sm">
+                  <a 
+                    href="mailto:info@idbh.com" 
+                    className="hover:text-white transition-colors duration-300"
+                    data-testid="link-footer-email"
+                  >
+                    info@idbh.com
+                  </a>
+                  <span className="text-white/20">|</span>
+                  <a 
+                    href="tel:732-813-8500" 
+                    className="hover:text-white transition-colors duration-300"
+                    data-testid="link-footer-phone"
+                  >
+                    732-813-8500
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="border-t border-neutral-800 mt-10 pt-10 text-center">
-            <p className="text-neutral-600 text-xs uppercase tracking-[0.15em]" data-testid="text-copyright">
+          
+          {/* Glass divider */}
+          <div className="glass-divider mb-8" />
+          
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-white/30 text-xs uppercase tracking-[0.2em]" data-testid="text-copyright">
               &copy; {new Date().getFullYear()} IDBH Design. All rights reserved.
             </p>
           </div>
