@@ -25,10 +25,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/40"
-          : "bg-transparent"
+          ? "bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border-b border-white/20 dark:border-white/10 shadow-sm"
+          : "bg-white/10 dark:bg-black/10 backdrop-blur-md border-b border-white/10"
       }`}
       data-testid="header-nav"
     >
@@ -39,27 +39,27 @@ export function Header() {
             <img
               src={logo}
               alt="IDBH Design"
-              className={`h-8 md:h-10 transition-all duration-300 cursor-pointer ${
-                isScrolled ? "" : "invert brightness-200"
+              className={`h-8 md:h-10 transition-all duration-500 cursor-pointer ${
+                isScrolled ? "" : "brightness-0 invert"
               }`}
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <Link 
                 key={item.href} 
                 href={item.href}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
-                className={`text-sm uppercase tracking-wider transition-all duration-300 ${
+                className={`text-xs uppercase tracking-[0.2em] font-light transition-all duration-500 ${
                   isScrolled
                     ? location === item.href
                       ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-foreground/60 hover:text-foreground"
                     : location === item.href
                       ? "text-white"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/80 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -69,10 +69,10 @@ export function Header() {
               <Button
                 variant="outline"
                 size="sm"
-                className={`transition-all duration-300 ${
+                className={`text-xs uppercase tracking-[0.15em] font-light transition-all duration-500 ${
                   isScrolled
-                    ? ""
-                    : "border-white/30 text-white hover:bg-white/10 hover:text-white"
+                    ? "border-foreground/20 hover:border-foreground/40"
+                    : "border-white/40 text-white hover:bg-white/10 hover:border-white/60 hover:text-white"
                 }`}
                 data-testid="button-nav-contact"
               >
@@ -85,7 +85,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden ${isScrolled ? "" : "text-white hover:bg-white/10"}`}
+            className={`md:hidden transition-all duration-500 ${isScrolled ? "" : "text-white hover:bg-white/20"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="button-mobile-menu"
           >
@@ -100,39 +100,39 @@ export function Header() {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <nav
-            className={`md:hidden py-4 border-t ${
-              isScrolled ? "border-border/40" : "border-white/20"
+            className={`md:hidden py-6 border-t ${
+              isScrolled ? "border-foreground/10" : "border-white/20"
             }`}
             data-testid="nav-mobile-menu"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link 
                   key={item.href} 
                   href={item.href}
                   data-testid={`nav-mobile-link-${item.label.toLowerCase()}`}
-                  className={`text-sm uppercase tracking-wider block py-2 transition-colors ${
+                  className={`text-xs uppercase tracking-[0.2em] font-light block py-3 transition-all duration-300 ${
                     isScrolled
                       ? location === item.href
                         ? "text-foreground"
-                        : "text-muted-foreground"
+                        : "text-foreground/60"
                       : location === item.href
                         ? "text-white"
-                        : "text-white/70"
+                        : "text-white/80"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Link href="/contact" data-testid="link-mobile-contact-cta">
+              <Link href="/contact" data-testid="link-mobile-contact-cta" className="mt-4">
                 <Button
                   variant="outline"
                   size="sm"
-                  className={`w-full mt-2 ${
+                  className={`w-full text-xs uppercase tracking-[0.15em] font-light ${
                     isScrolled
-                      ? ""
-                      : "border-white/30 text-white hover:bg-white/10"
+                      ? "border-foreground/20"
+                      : "border-white/40 text-white hover:bg-white/10"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   data-testid="button-mobile-contact"
