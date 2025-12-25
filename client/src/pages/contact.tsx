@@ -48,7 +48,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <LiquidGlassFilter />
-      <Header />
+      <Header variant="light" />
 
       {/* Page Header */}
       <section className="pt-24 md:pt-32 pb-16 md:pb-24 bg-muted/30">

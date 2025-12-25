@@ -11,10 +11,17 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  variant?: "dark" | "light";
+}
+
+export function Header({ variant = "dark" }: HeaderProps) {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // On light variant pages (no dark hero), always use the solid header style
+  const useSolidHeader = variant === "light" || isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +34,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "glass-header-scrolled" : "glass-header"
+        useSolidHeader ? "glass-header-scrolled" : "glass-header"
       }`}
       data-testid="header-nav"
     >
@@ -39,7 +46,7 @@ export function Header() {
               src={logo}
               alt="IDBH Design"
               className={`h-8 md:h-10 transition-all duration-500 cursor-pointer ${
-                isScrolled ? "" : "brightness-0 invert"
+                useSolidHeader ? "" : "brightness-0 invert"
               }`}
             />
           </Link>
@@ -52,7 +59,7 @@ export function Header() {
                 href={item.href}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
                 className={`text-xs uppercase tracking-[0.2em] font-light transition-all duration-500 ${
-                  isScrolled
+                  useSolidHeader
                     ? location === item.href
                       ? "text-foreground"
                       : "text-foreground/60 hover:text-foreground"
@@ -65,7 +72,7 @@ export function Header() {
               </Link>
             ))}
             <Link href="/contact" data-testid="link-nav-contact-cta">
-              {isScrolled ? (
+              {useSolidHeader ? (
                 <Button
                   variant="outline"
                   size="sm"
@@ -91,7 +98,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden transition-all duration-500 ${isScrolled ? "" : "text-white hover:bg-white/20"}`}
+            className={`md:hidden transition-all duration-500 ${useSolidHeader ? "" : "text-white hover:bg-white/20"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="button-mobile-menu"
           >
@@ -107,7 +114,7 @@ export function Header() {
         {isMobileMenuOpen && (
           <nav
             className={`md:hidden py-6 border-t ${
-              isScrolled ? "border-foreground/10" : "border-white/20"
+              useSolidHeader ? "border-foreground/10" : "border-white/20"
             }`}
             data-testid="nav-mobile-menu"
           >
@@ -118,7 +125,7 @@ export function Header() {
                   href={item.href}
                   data-testid={`nav-mobile-link-${item.label.toLowerCase()}`}
                   className={`text-xs uppercase tracking-[0.2em] font-light block py-3 transition-all duration-300 ${
-                    isScrolled
+                    useSolidHeader
                       ? location === item.href
                         ? "text-foreground"
                         : "text-foreground/60"
@@ -132,7 +139,7 @@ export function Header() {
                 </Link>
               ))}
               <Link href="/contact" data-testid="link-mobile-contact-cta" className="mt-4">
-                {isScrolled ? (
+                {useSolidHeader ? (
                   <Button
                     variant="outline"
                     size="sm"
