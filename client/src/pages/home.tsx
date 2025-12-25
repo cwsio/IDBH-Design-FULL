@@ -249,18 +249,23 @@ export default function Home() {
         >
           <div className="liquid-glass p-12 md:p-16 text-center">
             <p 
-              className="text-white/70 text-xs md:text-sm uppercase tracking-[0.25em] mb-6"
+              className="text-white/90 text-xs md:text-sm uppercase tracking-[0.25em] mb-6"
+              style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
               data-testid="text-experience-subtitle"
             >
               Design with purpose
             </p>
             <h2 
               className="text-3xl md:text-4xl lg:text-5xl font-serif text-white leading-tight mb-6"
+              style={{ textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}
               data-testid="text-experience-title"
             >
               Where vision meets<br />intention
             </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+            <p 
+              className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl mx-auto"
+              style={{ textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}
+            >
               Each space carries its own narrative—blending function with elegance, crafted for those who live and work within.
             </p>
           </div>
