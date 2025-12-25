@@ -227,44 +227,44 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-32 md:py-40 bg-background">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/lounge.jpg"
+            alt="Interior Design"
+            className="w-full h-full object-cover"
+          />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
+        </div>
+        
+        {/* Glassmorphism Content Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 max-w-3xl mx-auto px-6 md:px-12"
+        >
+          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-md p-12 md:p-16 text-center">
             <p 
-              className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto"
+              className="text-white/70 text-xs md:text-sm uppercase tracking-[0.25em] mb-6"
               data-testid="text-experience-subtitle"
             >
-              Each space we design carries its own narrative—where purpose meets elegance, and every detail serves a greater vision.
+              Design with purpose
             </p>
             <h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-serif text-white leading-tight mb-6"
               data-testid="text-experience-title"
             >
-              The journey begins<br />with intention
+              Where vision meets<br />intention
             </h2>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-12"
-            >
-              <Link href="/contact">
-                <span 
-                  className="text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                  data-testid="link-experience-contact"
-                >
-                  Contact Us
-                </span>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
+            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+              Each space carries its own narrative—blending function with elegance, crafted for those who live and work within.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
       {/* Call to Action Section */}
