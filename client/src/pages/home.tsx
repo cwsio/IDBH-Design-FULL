@@ -247,7 +247,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-3xl mx-auto px-6 md:px-12"
         >
-          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-md p-12 md:p-16 text-center">
+          <div className="liquid-glass p-12 md:p-16 text-center">
             <p 
               className="text-white/70 text-xs md:text-sm uppercase tracking-[0.25em] mb-6"
               data-testid="text-experience-subtitle"
