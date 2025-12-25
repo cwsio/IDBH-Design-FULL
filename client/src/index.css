@@ -206,7 +206,7 @@
     inset: -1px;
   }
 
-  /* Liquid Glass Effect - iOS Style */
+  /* Simple Liquid Glass Effect - for buttons */
   .liquid-glass {
     position: relative;
     background: rgba(255, 255, 255, 0.15);
@@ -235,5 +235,60 @@
     z-index: -1;
     filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
     pointer-events: none;
+  }
+
+  /* iOS Liquid Glass Container - with SVG displacement filter */
+  .liquid-glass-container {
+    --lg-bg-color: rgba(255, 255, 255, 0.25);
+    --lg-highlight: rgba(255, 255, 255, 0.75);
+    --lg-text: #ffffff;
+    --lg-hover-glow: rgba(255, 255, 255, 0.4);
+    position: relative;
+    background: transparent;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 
+                0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  }
+
+  .liquid-glass-container:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25), 
+                0 0 30px var(--lg-hover-glow);
+  }
+
+  .liquid-glass-filter {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    backdrop-filter: blur(0px);
+    filter: url(#lg-dist);
+    isolation: isolate;
+  }
+
+  .liquid-glass-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--lg-bg-color);
+  }
+
+  .liquid-glass-specular {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    overflow: hidden;
+    box-shadow: inset 1px 1px 0 var(--lg-highlight),
+                inset 0 0 5px var(--lg-highlight);
+  }
+
+  .liquid-glass-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--lg-text);
   }
 }

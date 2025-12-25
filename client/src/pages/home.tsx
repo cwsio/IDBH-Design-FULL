@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/header";
+import { LiquidGlassFilter, LiquidGlassCard } from "@/components/liquid-glass";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
@@ -181,6 +182,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+      <LiquidGlassFilter />
       <Header />
       
       {/* Hero Section */}
@@ -374,7 +376,7 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12">
-          <div className="liquid-glass p-12 md:p-20 text-center">
+          <LiquidGlassCard className="text-center">
             <p 
               className="text-white/90 text-xs md:text-sm uppercase tracking-[0.3em] mb-8"
               style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
@@ -395,7 +397,7 @@ export default function Home() {
             >
               Each space carries its own narrative—blending function with elegance, crafted for those who live and work within.
             </p>
-          </div>
+          </LiquidGlassCard>
         </div>
       </section>
 
