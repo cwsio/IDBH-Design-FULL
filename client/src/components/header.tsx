@@ -7,6 +7,7 @@ import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 const navItems = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
 ];
@@ -71,27 +72,6 @@ export function Header({ variant = "dark" }: HeaderProps) {
                 {item.label}
               </Link>
             ))}
-            <Link href="/contact" data-testid="link-nav-contact-cta">
-              {useSolidHeader ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-xs uppercase tracking-[0.15em] font-light border-foreground/20"
-                  data-testid="button-nav-contact"
-                >
-                  Get in Touch
-                </Button>
-              ) : (
-                <LiquidGlassButton
-                  size="sm"
-                  variant="outline"
-                  className="text-xs uppercase tracking-[0.15em] font-light"
-                  data-testid="button-nav-contact"
-                >
-                  Get in Touch
-                </LiquidGlassButton>
-              )}
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -138,29 +118,6 @@ export function Header({ variant = "dark" }: HeaderProps) {
                   {item.label}
                 </Link>
               ))}
-              <Link href="/contact" data-testid="link-mobile-contact-cta" className="mt-4">
-                {useSolidHeader ? (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-xs uppercase tracking-[0.15em] font-light border-foreground/20"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    data-testid="button-mobile-contact"
-                  >
-                    Get in Touch
-                  </Button>
-                ) : (
-                  <LiquidGlassButton
-                    size="sm"
-                    variant="outline"
-                    className="w-full text-xs uppercase tracking-[0.15em] font-light"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    data-testid="button-mobile-contact"
-                  >
-                    Get in Touch
-                  </LiquidGlassButton>
-                )}
-              </Link>
             </div>
           </nav>
         )}

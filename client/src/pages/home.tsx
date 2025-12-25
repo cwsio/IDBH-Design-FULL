@@ -278,7 +278,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-28 md:py-36 bg-background">
+      <section id="about" className="py-28 md:py-36 bg-background">
         <div ref={aboutRef} className="max-w-4xl mx-auto px-6 md:px-12 text-center">
           <h2 
             className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-10"
