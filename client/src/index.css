@@ -237,6 +237,48 @@
     pointer-events: none;
   }
 
+  /* Liquid Glass Button - Primary variant */
+  .liquid-glass-button {
+    position: relative;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .liquid-glass-button-primary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .liquid-glass-button-primary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+                0 0 20px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Liquid Glass Button - Outline variant */
+  .liquid-glass-button-outline {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .liquid-glass-button-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
   /* iOS Liquid Glass Container - with SVG displacement filter */
   .liquid-glass-container {
     --lg-bg-color: rgba(255, 255, 255, 0.25);

@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/header";
-import { LiquidGlassFilter, LiquidGlassCard } from "@/components/liquid-glass";
+import { LiquidGlassFilter, LiquidGlassCard, LiquidGlassButton } from "@/components/liquid-glass";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
@@ -247,23 +247,22 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/projects">
-              <Button 
+              <LiquidGlassButton 
                 size="lg" 
-                className="liquid-glass text-white border-white/50"
+                variant="primary"
                 data-testid="button-view-work"
               >
                 View Our Work
-              </Button>
+              </LiquidGlassButton>
             </Link>
             <Link href="/contact">
-              <Button 
+              <LiquidGlassButton 
                 size="lg" 
-                variant="outline" 
-                className="border-white/40 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15"
+                variant="outline"
                 data-testid="button-contact-hero"
               >
                 Contact Us
-              </Button>
+              </LiquidGlassButton>
             </Link>
           </motion.div>
 

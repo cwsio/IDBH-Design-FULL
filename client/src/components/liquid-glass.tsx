@@ -1,9 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, ButtonHTMLAttributes } from "react";
+import { Button } from "@/components/ui/button";
 
 interface LiquidGlassProps {
   children: ReactNode;
   className?: string;
   padding?: string;
+}
+
+interface LiquidGlassButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  size?: "default" | "sm" | "lg" | "icon";
+  variant?: "primary" | "outline";
+  className?: string;
 }
 
 export function LiquidGlassFilter() {
@@ -53,5 +61,28 @@ export function LiquidGlassCard({ children, className = "", padding = "p-12 md:p
         {children}
       </div>
     </div>
+  );
+}
+
+export function LiquidGlassButton({ 
+  children, 
+  size = "default", 
+  variant = "primary",
+  className = "",
+  ...props 
+}: LiquidGlassButtonProps) {
+  const baseClasses = "liquid-glass-button text-white transition-all duration-300";
+  const variantClasses = variant === "outline" 
+    ? "liquid-glass-button-outline" 
+    : "liquid-glass-button-primary";
+  
+  return (
+    <Button
+      size={size}
+      className={`${baseClasses} ${variantClasses} ${className}`}
+      {...props}
+    >
+      {children}
+    </Button>
   );
 }

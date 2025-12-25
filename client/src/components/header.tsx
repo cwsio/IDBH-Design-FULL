@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LiquidGlassButton } from "@/components/liquid-glass";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 const navItems = [
@@ -64,18 +65,25 @@ export function Header() {
               </Link>
             ))}
             <Link href="/contact" data-testid="link-nav-contact-cta">
-              <Button
-                variant="outline"
-                size="sm"
-                className={`text-xs uppercase tracking-[0.15em] font-light transition-all duration-500 ${
-                  isScrolled
-                    ? "border-foreground/20 hover:border-foreground/40"
-                    : "border-white/40 text-white hover:bg-white/10 hover:border-white/60 hover:text-white"
-                }`}
-                data-testid="button-nav-contact"
-              >
-                Get in Touch
-              </Button>
+              {isScrolled ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs uppercase tracking-[0.15em] font-light border-foreground/20"
+                  data-testid="button-nav-contact"
+                >
+                  Get in Touch
+                </Button>
+              ) : (
+                <LiquidGlassButton
+                  size="sm"
+                  variant="outline"
+                  className="text-xs uppercase tracking-[0.15em] font-light"
+                  data-testid="button-nav-contact"
+                >
+                  Get in Touch
+                </LiquidGlassButton>
+              )}
             </Link>
           </nav>
 
@@ -124,19 +132,27 @@ export function Header() {
                 </Link>
               ))}
               <Link href="/contact" data-testid="link-mobile-contact-cta" className="mt-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className={`w-full text-xs uppercase tracking-[0.15em] font-light ${
-                    isScrolled
-                      ? "border-foreground/20"
-                      : "border-white/40 text-white hover:bg-white/10"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid="button-mobile-contact"
-                >
-                  Get in Touch
-                </Button>
+                {isScrolled ? (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-xs uppercase tracking-[0.15em] font-light border-foreground/20"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-testid="button-mobile-contact"
+                  >
+                    Get in Touch
+                  </Button>
+                ) : (
+                  <LiquidGlassButton
+                    size="sm"
+                    variant="outline"
+                    className="w-full text-xs uppercase tracking-[0.15em] font-light"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-testid="button-mobile-contact"
+                  >
+                    Get in Touch
+                  </LiquidGlassButton>
+                )}
               </Link>
             </div>
           </nav>
