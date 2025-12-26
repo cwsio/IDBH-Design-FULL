@@ -3,16 +3,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import { LiquidGlassFilter } from "@/components/liquid-glass";
+import { projects } from "@/data/projects";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
-
-const projects = [
-  { id: 1, title: "Sunrise Senior Living", category: "Senior Living", image: "/images/lobby.jpg", description: "A welcoming lobby design for an upscale senior living community." },
-  { id: 2, title: "Wellness Center", category: "Healthcare", image: "/images/gym.jpg", description: "State-of-the-art fitness and rehabilitation facility." },
-  { id: 3, title: "Patient Care Suite", category: "Healthcare", image: "/images/patient-room.jpg", description: "Comfortable and functional patient room design." },
-  { id: 4, title: "Memory Care Commons", category: "Senior Living", image: "/images/hallway.jpg", description: "Thoughtfully designed corridors for memory care residents." },
-  { id: 5, title: "Assisted Living Dining", category: "Senior Living", image: "/images/dining.jpg", description: "Elegant dining space promoting social interaction." },
-  { id: 6, title: "Rehabilitation Lounge", category: "Healthcare", image: "/images/lounge.jpg", description: "Relaxing lounge area for patients and visitors." },
-];
 
 export default function Projects() {
   return (
@@ -20,7 +12,6 @@ export default function Projects() {
       <LiquidGlassFilter />
       <Header variant="light" />
 
-      {/* Page Header */}
       <section className="pt-24 md:pt-32 pb-16 md:pb-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div
@@ -32,51 +23,48 @@ export default function Projects() {
               Our Projects
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Explore our portfolio of healthcare and senior living interior design projects. Each space is thoughtfully crafted to enhance comfort, functionality, and well-being.
+              Explore our portfolio of healthcare and senior living interior design projects.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Projects Grid */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                id={`project-${project.id}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
-                data-testid={`project-card-${project.id}`}
-              >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-md mb-4">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <span className="text-muted-foreground text-sm uppercase tracking-wider" data-testid={`text-project-category-${project.id}`}>
-                  {project.category}
-                </span>
-                <h2 className="text-2xl font-serif text-foreground mt-1 mb-2" data-testid={`text-project-title-${project.id}`}>
-                  {project.title}
-                </h2>
-                <p className="text-muted-foreground" data-testid={`text-project-description-${project.id}`}>
-                  {project.description}
-                </p>
-              </motion.div>
+              <Link key={project.id} href={`/projects/${project.id}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group cursor-pointer"
+                  data-testid={`project-card-${project.id}`}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img 
+                      src={project.featuredImage}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <h2 className="text-xl font-serif text-white mb-1" data-testid={`text-project-title-${project.id}`}>
+                        {project.title}
+                      </h2>
+                      <p className="text-white/70 text-sm" data-testid={`text-project-location-${project.id}`}>
+                        {project.location}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
           <motion.div
@@ -100,10 +88,8 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative glass-footer py-20 mt-auto">
         <div className="max-w-6xl mx-auto px-6">
-          {/* Glass container for footer content */}
           <div className="liquid-glass-container glass-dark rounded-2xl p-8 md:p-12 mb-10">
             <div className="liquid-glass-filter" />
             <div className="liquid-glass-overlay" />
@@ -159,11 +145,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          
-          {/* Glass divider */}
           <div className="glass-divider mb-8" />
-          
-          {/* Copyright */}
           <div className="text-center">
             <p className="text-white/30 text-xs uppercase tracking-[0.2em]" data-testid="text-copyright">
               &copy; {new Date().getFullYear()} IDBH Design. All rights reserved.

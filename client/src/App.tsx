@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import HomeMinimal from "@/pages/home-minimal";
 import Projects from "@/pages/projects";
+import ProjectDetail from "@/pages/project-detail";
 import Contact from "@/pages/contact";
 
 type SiteType = 'design' | 'minimal' | 'loading';
@@ -50,6 +51,7 @@ function Router({ siteType }: { siteType: SiteType }) {
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/projects" component={Projects} />
+      <Route path="/projects/:id" component={ProjectDetail} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
