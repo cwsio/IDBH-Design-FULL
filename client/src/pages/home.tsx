@@ -5,20 +5,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/header";
 import { LiquidGlassFilter, LiquidGlassCard, LiquidGlassButton } from "@/components/liquid-glass";
+import { projects } from "@/data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const featuredProjects = [
-  { id: 1, title: "Sunrise Senior Living", category: "Senior Living", image: "/images/lobby.jpg" },
-  { id: 2, title: "Wellness Center", category: "Healthcare", image: "/images/gym.jpg" },
-  { id: 3, title: "Patient Care Suite", category: "Healthcare", image: "/images/patient-room.jpg" },
-  { id: 4, title: "Memory Care Commons", category: "Senior Living", image: "/images/hallway.jpg" },
-  { id: 5, title: "Assisted Living Dining", category: "Senior Living", image: "/images/dining.jpg" },
-  { id: 6, title: "Rehabilitation Lounge", category: "Healthcare", image: "/images/lounge.jpg" },
-];
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -317,14 +309,14 @@ export default function Home() {
           </div>
 
           <div ref={projectCardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
-              <Link key={project.id} href={`/projects#project-${project.id}`}>
+            {projects.map((project) => (
+              <Link key={project.id} href={`/projects/${project.id}`}>
                 <div 
                   className="project-card glass-project-card group relative aspect-[4/3] overflow-hidden rounded-xl cursor-pointer"
                   data-testid={`card-project-${project.id}`}
                 >
                   <img 
-                    src={project.image}
+                    src={project.featuredImage}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
@@ -333,9 +325,9 @@ export default function Home() {
                     <span 
                       className="text-white/70 text-xs uppercase tracking-[0.2em] mb-2 block"
                       style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
-                      data-testid={`text-project-category-${project.id}`}
+                      data-testid={`text-project-location-${project.id}`}
                     >
-                      {project.category}
+                      {project.location}
                     </span>
                     <h3 
                       className="text-white text-xl font-serif"
