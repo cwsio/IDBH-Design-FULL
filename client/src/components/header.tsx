@@ -54,24 +54,42 @@ export function Header({ variant = "dark" }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <Link 
-                key={item.href} 
-                href={item.href}
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-                className={`text-xs uppercase tracking-[0.2em] font-light transition-all duration-500 ${
-                  useSolidHeader
-                    ? location === item.href
-                      ? "text-foreground"
-                      : "text-foreground/60 hover:text-foreground"
-                    : location === item.href
-                      ? "text-white"
-                      : "text-white/80 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isAnchorLink = item.href.includes('#');
+              const linkClass = `text-xs uppercase tracking-[0.2em] font-light transition-all duration-500 ${
+                useSolidHeader
+                  ? location === item.href
+                    ? "text-foreground"
+                    : "text-foreground/60 hover:text-foreground"
+                  : location === item.href
+                    ? "text-white"
+                    : "text-white/80 hover:text-white"
+              }`;
+              
+              if (isAnchorLink) {
+                return (
+                  <a 
+                    key={item.href} 
+                    href={item.href}
+                    data-testid={`nav-link-${item.label.toLowerCase()}`}
+                    className={linkClass}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              
+              return (
+                <Link 
+                  key={item.href} 
+                  href={item.href}
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  className={linkClass}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -99,25 +117,44 @@ export function Header({ variant = "dark" }: HeaderProps) {
             data-testid="nav-mobile-menu"
           >
             <div className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.href} 
-                  href={item.href}
-                  data-testid={`nav-mobile-link-${item.label.toLowerCase()}`}
-                  className={`text-xs uppercase tracking-[0.2em] font-light block py-3 transition-all duration-300 ${
-                    useSolidHeader
-                      ? location === item.href
-                        ? "text-foreground"
-                        : "text-foreground/60"
-                      : location === item.href
-                        ? "text-white"
-                        : "text-white/80"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isAnchorLink = item.href.includes('#');
+                const linkClass = `text-xs uppercase tracking-[0.2em] font-light block py-3 transition-all duration-300 ${
+                  useSolidHeader
+                    ? location === item.href
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                    : location === item.href
+                      ? "text-white"
+                      : "text-white/80"
+                }`;
+                
+                if (isAnchorLink) {
+                  return (
+                    <a 
+                      key={item.href} 
+                      href={item.href}
+                      data-testid={`nav-mobile-link-${item.label.toLowerCase()}`}
+                      className={linkClass}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+                
+                return (
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    data-testid={`nav-mobile-link-${item.label.toLowerCase()}`}
+                    className={linkClass}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
           </nav>
         )}
