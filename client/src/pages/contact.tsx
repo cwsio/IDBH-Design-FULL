@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,8 +9,8 @@ import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useCreateContact } from "@/hooks/use-contact";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { LiquidGlassFilter } from "@/components/liquid-glass";
-import logo from "@assets/IDBDesignLogo_1766439748813.png";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -235,77 +234,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative glass-footer py-20 mt-auto">
-        <div className="max-w-6xl mx-auto px-6">
-          {/* Glass container for footer content */}
-          <div className="liquid-glass-container glass-dark rounded-2xl p-8 md:p-12 mb-10">
-            <div className="liquid-glass-filter" />
-            <div className="liquid-glass-overlay" />
-            <div className="liquid-glass-specular" />
-            <div className="liquid-glass-content w-full">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8 w-full">
-                <img 
-                  src={logo} 
-                  alt="IDBH Design" 
-                  className="h-12 brightness-0 invert opacity-80"
-                  data-testid="img-footer-logo"
-                />
-                <nav className="flex flex-wrap justify-center gap-8">
-                  <Link 
-                    href="/" 
-                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                    data-testid="link-footer-home"
-                  >
-                    Home
-                  </Link>
-                  <Link 
-                    href="/projects" 
-                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                    data-testid="link-footer-projects"
-                  >
-                    Projects
-                  </Link>
-                  <Link 
-                    href="/contact" 
-                    className="text-white/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors duration-300" 
-                    data-testid="link-footer-contact"
-                  >
-                    Contact
-                  </Link>
-                </nav>
-                <div className="flex items-center gap-4 text-white/50 text-sm">
-                  <a 
-                    href="mailto:info@idbh.com" 
-                    className="hover:text-white transition-colors duration-300"
-                    data-testid="link-footer-email"
-                  >
-                    info@idbh.com
-                  </a>
-                  <span className="text-white/20">|</span>
-                  <a 
-                    href="tel:732-813-8500" 
-                    className="hover:text-white transition-colors duration-300"
-                    data-testid="link-footer-phone"
-                  >
-                    732-813-8500
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Glass divider */}
-          <div className="glass-divider mb-8" />
-          
-          {/* Copyright */}
-          <div className="text-center">
-            <p className="text-white/30 text-xs uppercase tracking-[0.2em]" data-testid="text-copyright">
-              &copy; {new Date().getFullYear()} IDBH Design. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
