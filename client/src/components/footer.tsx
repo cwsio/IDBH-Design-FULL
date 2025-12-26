@@ -11,23 +11,23 @@ export function Footer() {
           <img 
             src={logo} 
             alt="IDBH Design" 
-            className="h-10 opacity-80"
+            className="h-10 opacity-90"
             data-testid="img-footer-logo"
           />
-          <p className="text-foreground/60 text-sm max-w-md leading-relaxed">
+          <p className="text-current opacity-60 text-sm max-w-md leading-relaxed">
             IDBH Design specializes in healthcare interior design, creating thoughtful environments for assisted living communities and senior care facilities.
           </p>
-          <div className="flex flex-col items-start md:items-end gap-2 text-foreground/70 text-sm">
+          <div className="flex flex-col items-start md:items-end gap-2 text-current opacity-70 text-sm">
             <a 
               href="mailto:info@idbh.com" 
-              className="hover:text-foreground transition-colors duration-300"
+              className="hover:opacity-100 transition-opacity duration-300"
               data-testid="link-footer-email"
             >
               info@idbh.com
             </a>
             <a 
               href="tel:732-813-8500" 
-              className="hover:text-foreground transition-colors duration-300"
+              className="hover:opacity-100 transition-opacity duration-300"
               data-testid="link-footer-phone"
             >
               732-813-8500
@@ -43,28 +43,28 @@ export function Footer() {
           <nav className="flex flex-wrap justify-center gap-8">
             <Link 
               href="/" 
-              className="text-foreground/50 text-xs uppercase tracking-[0.15em] hover:text-foreground transition-colors duration-300" 
+              className="text-current opacity-50 text-xs uppercase tracking-[0.15em] hover:opacity-100 transition-opacity duration-300" 
               data-testid="link-footer-home"
             >
               Home
             </Link>
             <a 
               href="/#about" 
-              className="text-foreground/50 text-xs uppercase tracking-[0.15em] hover:text-foreground transition-colors duration-300" 
+              className="text-current opacity-50 text-xs uppercase tracking-[0.15em] hover:opacity-100 transition-opacity duration-300" 
               data-testid="link-footer-about"
             >
               About
             </a>
             <Link 
               href="/projects" 
-              className="text-foreground/50 text-xs uppercase tracking-[0.15em] hover:text-foreground transition-colors duration-300" 
+              className="text-current opacity-50 text-xs uppercase tracking-[0.15em] hover:opacity-100 transition-opacity duration-300" 
               data-testid="link-footer-projects"
             >
               Projects
             </Link>
             <Link 
               href="/contact" 
-              className="text-foreground/50 text-xs uppercase tracking-[0.15em] hover:text-foreground transition-colors duration-300" 
+              className="text-current opacity-50 text-xs uppercase tracking-[0.15em] hover:opacity-100 transition-opacity duration-300" 
               data-testid="link-footer-contact"
             >
               Contact
@@ -77,7 +77,7 @@ export function Footer() {
               href="https://instagram.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/50 hover:text-foreground transition-colors duration-300"
+              className="text-current opacity-50 hover:opacity-100 transition-opacity duration-300"
               data-testid="link-social-instagram"
               aria-label="Instagram"
             >
@@ -87,7 +87,7 @@ export function Footer() {
               href="https://linkedin.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/50 hover:text-foreground transition-colors duration-300"
+              className="text-current opacity-50 hover:opacity-100 transition-opacity duration-300"
               data-testid="link-social-linkedin"
               aria-label="LinkedIn"
             >
@@ -97,7 +97,7 @@ export function Footer() {
               href="https://facebook.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/50 hover:text-foreground transition-colors duration-300"
+              className="text-current opacity-50 hover:opacity-100 transition-opacity duration-300"
               data-testid="link-social-facebook"
               aria-label="Facebook"
             >
@@ -105,7 +105,7 @@ export function Footer() {
             </a>
           </div>
           
-          <p className="text-foreground/40 text-xs uppercase tracking-[0.15em]" data-testid="text-copyright">
+          <p className="text-current opacity-40 text-xs uppercase tracking-[0.15em]" data-testid="text-copyright">
             &copy; {new Date().getFullYear()} IDBH Design
           </p>
         </div>
@@ -114,7 +114,7 @@ export function Footer() {
       {/* Large decorative logo text - full width with strong contrast */}
       <div className="relative w-full px-4">
         <h2 
-          className="font-serif text-[18vw] md:text-[15vw] leading-[0.85] text-foreground/[0.08] text-center select-none whitespace-nowrap overflow-hidden"
+          className="font-serif text-[18vw] md:text-[15vw] leading-[0.85] text-current opacity-[0.06] text-center select-none whitespace-nowrap overflow-hidden"
           aria-hidden="true"
         >
           IDBH Design

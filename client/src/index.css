@@ -389,15 +389,17 @@
                 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
-  /* Glass footer - light elegant variant */
+  /* Glass footer - clean white/cream elegant variant */
   .glass-footer {
-    background: hsl(30 10% 85%);
-    border-top: 1px solid hsl(30 10% 75%);
+    background: hsl(30 20% 97%);
+    border-top: 1px solid hsl(30 10% 90%);
+    color: hsl(30 5% 25%);
   }
 
   .dark .glass-footer {
-    background: hsl(30 5% 20%);
-    border-top: 1px solid hsl(30 5% 25%);
+    background: hsl(30 5% 12%);
+    border-top: 1px solid hsl(30 5% 18%);
+    color: hsl(30 10% 85%);
   }
 
   /* Glass divider line */
@@ -405,16 +407,16 @@
     height: 1px;
     background: linear-gradient(90deg, 
       transparent, 
-      hsl(30 10% 65%) 20%, 
-      hsl(30 10% 65%) 80%, 
+      hsl(30 10% 80%) 20%, 
+      hsl(30 10% 80%) 80%, 
       transparent);
   }
 
   .dark .glass-divider {
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(255, 255, 255, 0.2) 20%, 
-      rgba(255, 255, 255, 0.2) 80%, 
+      rgba(255, 255, 255, 0.15) 20%, 
+      rgba(255, 255, 255, 0.15) 80%, 
       transparent);
   }
 }
